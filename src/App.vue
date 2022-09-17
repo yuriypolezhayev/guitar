@@ -1,22 +1,25 @@
 <template>
-  <div class="gt">
-    <header>
-
-    </header>
-
-    <div class="gt-content">
-      <main>
-
-      </main>
-
-      <aside>
-
-      </aside>
-    </div>
+  <AppHeader />
+  <div class="app-content">
+    <AppMain />
+    <AppAside />
   </div>
 </template>
 
 <script setup>
+import AppHeader from '@/components/molecules/headers/AppHeader.vue'
+import AppMain from '@/modules/main/Main.vue'
+import AppAside from '@/modules/aside/Aside.vue'
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.app-content {
+  display: flex;
+  width: 100%;
+  height: calc(100% - 75px);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+</style>

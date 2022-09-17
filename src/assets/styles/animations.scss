@@ -1,0 +1,18 @@
+.accordion-item-enter-active, .accordion-item-leave-active {
+  will-change: height;
+  transition: all 0.2s ease-in-out;
+}
+
+.accordion-item-enter, .accordion-item-leave-to {
+  height: 0 !important;
+  opacity: 0;
+}
+
+.fadeHeight-enter-active, .fadeHeight-leave-active {
+  transition: all 0.2s ease-in-out;
+  max-height: 500px;
+}
+.fadeHeight-enter, .fadeHeight-leave-to {
+  opacity: 0;
+  max-height: 0;
+}

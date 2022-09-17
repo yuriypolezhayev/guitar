@@ -1,0 +1,19 @@
+@mixin font-thin {
+  font-family: 'NexaThin', sans-serif;
+}
+
+@mixin font-light {
+  font-family: 'NexaLight', sans-serif;
+}
+
+@mixin font-regular {
+  font-family: 'Nexa', sans-serif;
+}
+
+@mixin font-bold {
+  font-family: 'NextBold', sans-serif;
+}
+
+@mixin font-black {
+  font-family: 'NexaBlack', sans-serif;
+}
