@@ -3,22 +3,22 @@
     <button
         :id="`accordion_heading-${getRandomPrefix}`"
         type="button"
-        :aria-expanded="showing"
+        :aria-expanded="getState"
         :aria-controls="`accordion_body-${getRandomPrefix}`"
-        class="app-accordion_title"
+        class="app-accordion_title content-container"
         @click="toggle"
     >
       <AppTitle tag="h2" size="lg">
         {{ title }}
       </AppTitle>
-      <ArrowIcon :active="showing" />
+      <ArrowIcon :active="getState" />
     </button>
 
     <div
-        v-if="showing"
+        v-if="getState"
         :id="`accordion_body-${getRandomPrefix}`"
         :aria-labelledby="`accordion_heading-${getRandomPrefix}`"
-        class="app-accordion_body"
+        :class="['app-accordion_body', {'content-container': !full}]"
     >
       <slot />
     </div>
@@ -26,13 +26,15 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import AppTitle from '@/components/atoms/typography/AppTitle.vue';
 import ArrowIcon from '@/assets/images/aside/Arrow.vue';
-import { computed } from 'vue';
 
 const props = defineProps({
   title: { type: String, default: '' },
   name: { type: String, default: '' },
+  open: { type: Boolean, default: false },
+  full: { type: Boolean, default: false },
 })
 
 const getName = computed(() => {
@@ -45,11 +47,19 @@ const getRandomPrefix = computed(() => (Math.random() + 1).toString(36).substrin
 
 <script>
 import showingMixin from '@/mixins/showing.mixin';
+import { computed } from 'vue';
 
 export default {
   name: 'AppAccordion',
 
   mixins: [showingMixin],
+
+  computed: {
+    getState() {
+      if (this.open) return true;
+      else return this.showing
+    }
+  }
 };
 </script>
 
@@ -65,12 +75,10 @@ export default {
     width: 100%;
     background-color: $black;
     border: none;
-    padding: 16px 20px;
   }
 
   &_body {
     background-color: $primary;
-    padding: 16px 20px;
   }
 }
 </style>

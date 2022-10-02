@@ -3,68 +3,50 @@
       :is="href ? 'a' : 'span'"
       :href="href"
       :target="target"
-      :class="['app-link', getFontSize]"
+      :class="['app-link', getFontSize, getFontWeight, getLinkColor]"
       @click="$emit('click')"
   >
     <slot />
   </component>
 </template>
 
-<script>
-export default {
-  name: 'AppLink',
+<script setup>
+import { computed } from 'vue';
 
-  props: {
-    target: {
-      type: String,
-      default: '_blank',
-    },
-    href: {
-      type: String,
-      default: '',
-    },
-    size: {
-      type: String,
-      default: 'sm',
-      validator(value) {
-        return ['xs', 'sm', 'base', 'lg'].includes(value);
-      },
+const props = defineProps({
+  target: {
+    type: String,
+    default: '_blank',
+  },
+  href: {
+    type: String,
+    default: '',
+  },
+  color: {
+    type: String,
+    default: 'white',
+  },
+  size: {
+    type: String,
+    default: 'sm',
+    validator(value) {
+      return ['xs', 'sm', 'base', 'xl', 'lg'].includes(value);
     },
   },
-
-  computed: {
-    getFontSize() {
-      return `app-link-size--${ this.size }`;
-    },
+  weight: {
+    type: String,
+    default: '',
   },
-};
+})
+
+const getFontSize = computed(() => `app-link-size--${ props.size }`)
+const getFontWeight = computed(() => `app-link-weight--${ props.weight }`)
+const getLinkColor = computed(() => `app-link-color--${ props.color }`)
 </script>
-
 
 <style lang="scss" scoped>
 .app-link {
-  display: inline-flex;
-  font-family: 'NexaLight', sans-serif;
-  color: #FFFFFF;
   cursor: pointer;
-
-  &-size {
-    &--xs {
-      font-size: 14px;
-    }
-
-    &--sm {
-      font-size: 16px;
-      line-height: 19px;
-    }
-
-    &--base {
-      font-size: 14px;
-    }
-
-    &--lg {
-      font-size: 14px;
-    }
-  }
+  z-index: 10;
 }
 </style>

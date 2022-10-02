@@ -1,28 +1,115 @@
 <template>
   <aside>
+    <ItemsSelector v-model="itemType" />
+
     <appAccordion title="Show">
-      <AppCheckBoxList :options="showOptions" />
+      <AppList type="radio" :options="showOptions" v-model="show" />
     </appAccordion>
-    <appAccordion title="Color">
-      adad
+
+    <appAccordion title="Color" full open>
+      <div class="content-container">
+        <appTitle size="xl" weight="bold" class="pb-20">
+          Ready color designs
+        </appTitle>
+
+        <ReadyColors v-model="readyOption" />
+      </div>
+
+      <hr />
+      <div class="content-container">
+        <appTitle size="xl" weight="bold" class="pb-20">
+          Custom color
+        </appTitle>
+      </div>
     </appAccordion>
-    <appAccordion title="Pickguard">
-      adad
+
+    <appAccordion title="Pickguard" full>
+      <div class="content-container">
+        <appTitle size="xl" weight="bold" class="pb-20">
+          Type of pickguard
+        </appTitle>
+
+        <AppList type="radio" :options="pickGuardTypeOptions" v-model="pickGuardType" />
+      </div>
+
+      <hr />
+
+      <div class="content-container">
+        <appTitle size="xl" weight="bold" class="pb-20">
+          Pickguard design
+
+          <appTitle
+              tag="span"
+              size="xs"
+              color="primary"
+              class="pl-15"
+          >
+            + $10
+          </appTitle>
+        </appTitle>
+
+        <AppList
+            v-model="pickGuardDesign"
+            type="check"
+            :options="pickGuardDesignOptions"
+        />
+
+        <appClose
+            label="Clear all"
+            @click="pickGuardDesign = []"
+            class="pt-10"
+        />
+      </div>
     </appAccordion>
   </aside>
 </template>
 
-<script setup>
-import { reactive } from 'vue';
-
+<script>
+import AppTitle from '@/components/atoms/typography/AppTitle.vue';
 import AppAccordion from '@/components/atoms/accordion/AppAccordion.vue';
-import AppCheckBoxList from '@/components/molecules/checkbox/AppCheckBoxList.vue';
+import AppList from '@/components/molecules/lists/AppList.vue';
+import appClose from '@/components/atoms/common/Close.vue'
+import ItemsSelector from '@/modules/aside/components/ItemsSelector.vue';
+import ReadyColors from '@/modules/aside/components/ReadyColors.vue';
 
-const showOptions = reactive([
-  { id: 1, title: 'Only Guitar' },
-  { id: 2, title: 'With stand' },
-  { id: 3, title: 'In a case' },
-]);
+export default {
+  name: 'Aside',
+
+  components: {
+    AppTitle,
+    AppAccordion,
+    AppList,
+    appClose,
+    ItemsSelector,
+    ReadyColors,
+  },
+
+  data: () => ({
+    itemType: 'hat',
+    show: '',
+    pickGuardType: '',
+    pickGuardDesign: [],
+    readyOption: '',
+    showOptions: [
+      { id: 1, label: 'Only Guitar' },
+      { id: 2, label: 'With stand' },
+      { id: 3, label: 'In a case' },
+    ],
+    pickGuardTypeOptions: [
+      { id: 1, label: 'Type 1' },
+      { id: 2, label: 'Type 2' },
+      { id: 3, label: 'Type 3' },
+    ],
+    pickGuardDesignOptions: [
+      { id: 1, label: 'Type 1' },
+      { id: 2, label: 'Type 2' },
+      { id: 3, label: 'Type 3' },
+      { id: 4, label: 'Type 4' },
+      { id: 5, label: 'Type 5' },
+      { id: 6, label: 'Type 6' },
+    ]
+  }),
+}
 </script>
 
 <style lang="scss" scoped>
