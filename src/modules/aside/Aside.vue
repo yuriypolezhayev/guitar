@@ -6,7 +6,7 @@
       <AppList type="radio" :options="showOptions" v-model="show" />
     </appAccordion>
 
-    <appAccordion title="Color" full open>
+    <appAccordion title="Color" full>
       <div class="content-container">
         <appTitle size="xl" weight="bold" class="pb-20">
           Ready color designs
