@@ -1,6 +1,6 @@
 <template>
   <aside>
-    <ItemsSelector v-model="itemType" />
+    <ItemsSelector v-if="showSelector" v-model="itemType" />
 
     <appAccordion title="Show">
       <AppList type="radio" :options="showOptions" v-model="show" />
@@ -12,10 +12,11 @@
           Ready color designs
         </appTitle>
 
-        <ReadyColors v-model="readyOption" />
+        <AppList type="radio" :options="colorsOptions" v-model="readyOption" />
       </div>
 
       <hr />
+
       <div class="content-container">
         <appTitle size="xl" weight="bold" class="pb-20">
           Custom color
@@ -70,7 +71,6 @@ import AppAccordion from '@/components/atoms/accordion/AppAccordion.vue';
 import AppList from '@/components/molecules/lists/AppList.vue';
 import appClose from '@/components/atoms/common/Close.vue'
 import ItemsSelector from '@/modules/aside/components/ItemsSelector.vue';
-import ReadyColors from '@/modules/aside/components/ReadyColors.vue';
 
 export default {
   name: 'Aside',
@@ -81,10 +81,10 @@ export default {
     AppList,
     appClose,
     ItemsSelector,
-    ReadyColors,
   },
 
   data: () => ({
+    showSelector: true,
     itemType: 'hat',
     show: '',
     pickGuardType: '',
@@ -94,6 +94,12 @@ export default {
       { id: 1, label: 'Only Guitar' },
       { id: 2, label: 'With stand' },
       { id: 3, label: 'In a case' },
+    ],
+    colorsOptions: [
+      { id: 1, label: '3-Color Sunburst', customBG: 'sunburst' }, // customBg can be url
+      { id: 2, label: 'Roasted Pine', customBG: 'pine' },
+      { id: 3, label: 'Mystic Surf Green', customBG: 'green' },
+      { id: 4, label: 'Bran Paisley Esquire', customBG: 'esquire' },
     ],
     pickGuardTypeOptions: [
       { id: 1, label: 'Type 1' },

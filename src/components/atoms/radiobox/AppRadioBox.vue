@@ -31,6 +31,7 @@
 </template>
 
 <script>
+// if you need http link for the bg, remove this block
 import SunburstImage from '@/assets/images/aside/checkbox/sunburst.svg';
 import PineImage from '@/assets/images/aside/checkbox/pine.svg';
 import GreenImage from '@/assets/images/aside/checkbox/green.svg';
@@ -42,6 +43,7 @@ const IMAGES_MAP = {
   green: GreenImage,
   esquire: esquireImage,
 }
+//
 
 export default {
   name: 'AppRadioBox',
@@ -96,6 +98,7 @@ export default {
     },
 
     getCustomBG() {
+      // if you need http link for the bg, remove images map
       return { backgroundImage: 'url(' + IMAGES_MAP[this.item.customBG] + ')' }
     }
   },
