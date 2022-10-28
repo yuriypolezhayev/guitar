@@ -280,6 +280,11 @@ chalk@^4.0.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
+click-outside-vue3@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/click-outside-vue3/-/click-outside-vue3-4.0.1.tgz#81a6ac01696b301764b42db6fdbdf28e7cd8ef95"
+  integrity sha512-sbplNecrup5oGqA3o4bo8XmvHRT6q9fvw21Z67aDbTqB9M6LF7CuYLTlLvNtOgKU6W3zst5H5zJuEh4auqA34g==
+
 color-convert@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz"
@@ -1216,6 +1221,11 @@ vite@^3.0.9:
     rollup "~2.78.0"
   optionalDependencies:
     fsevents "~2.3.2"
+
+vue-accessible-color-picker@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/vue-accessible-color-picker/-/vue-accessible-color-picker-4.1.0.tgz#dc652719ce0bfe222fb3f3089f425564348eee88"
+  integrity sha512-VU3fdtX1YwceQuW7c9NR1K42G2vnkhjchajyZ1RyfEcYkdHPDgkgWq1KoHbPP0JX3qPuNsVsDZeEZTwNCfNhoQ==
 
 vue-eslint-parser@^9.0.1:
   version "9.1.0"

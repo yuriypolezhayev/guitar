@@ -1,28 +1,32 @@
 <template>
-  <div :class="['items_list', wrapperObjectCL]">
+  <div class="items_list">
     <component
-        :is="getItemType"
-        v-for="(item, index) in options"
-        :modelValue="modelValue"
-        :key="index"
-        :item="item"
-        :class="['items_list-item', item.class, itemObjectCL]"
-        @update:modelValue="selectItem"
+      :is="getItemType"
+      v-for="(item, index) in options"
+      :modelValue="modelValue"
+      :key="index"
+      :item="item"
+      :class="[
+        item.class,
+        'items_list-item',
+        'items_list-item--cols_' + cols,
+      ]"
+      @update:modelValue="selectItem"
     />
   </div>
 </template>
 
 <script>
-import AppCheckBox from '@/components/atoms/checkbox/AppCheckBox.vue';
-import AppRadioBox from '@/components/atoms/radiobox/AppRadioBox.vue';
+import AppCheckBox from "@/components/atoms/checkbox/AppCheckBox.vue";
+import AppRadioBox from "@/components/atoms/radiobox/AppRadioBox.vue";
 
 const listTypes = {
-  check: 'AppCheckBox',
-  radio: 'AppRadioBox'
-}
+  check: "AppCheckBox",
+  radio: "AppRadioBox",
+};
 
 export default {
-  name: 'AppList',
+  name: "AppList",
 
   components: {
     AppCheckBox,
@@ -42,9 +46,9 @@ export default {
       type: Array,
       default: () => [],
     },
-    inline: {
-      type: Boolean,
-      default: true
+    cols: {
+      type: String,
+      default: '2',
     },
   },
 
@@ -58,27 +62,14 @@ export default {
     },
 
     getItemType() {
-      return listTypes[this.type]
+      return listTypes[this.type];
     },
-
-    wrapperObjectCL() {
-      return {
-        'items_list--inline': this.inline
-      }
-    },
-
-    itemObjectCL() {
-      return {
-        'items_list-item--horizontal': this.inline,
-        'items_list-item--vertical': !this.inline
-      }
-    }
   },
 
   methods: {
     selectItem(value) {
-      if (this.isRadioType) this.$emit('update:modelValue', value)
-      if (this.isCheckType) this.selectCheckbox(value)
+      if (this.isRadioType) this.$emit("update:modelValue", value);
+      if (this.isCheckType) this.selectCheckbox(value);
     },
 
     selectCheckbox(value) {
@@ -92,38 +83,34 @@ export default {
       this.$emit('update:modelValue', selected);
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .items_list {
   display: flex;
-  flex-direction: column;
-
-  &-- {
-    &inline {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-  }
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px;
 
   &-item {
     padding-top: 5px;
     padding-bottom: 5px;
 
-    &--horizontal {
-      padding-right: 40px;
+    &--cols_ {
+      width: 100%;
 
-      &:last-child {
-        padding-right: 0;
+      &2 {
+        @media (min-width: 768px) {
+          width: calc(50% - 15px);
+        }
       }
-    }
 
-    &--vertical {
-      padding-top: 15px;
-
-      &:first-child {
-        padding-top: 0;
+      &3 {
+        @media (min-width: 768px) {
+          width: calc(100% / 3 - 15px);
+        }
       }
     }
   }

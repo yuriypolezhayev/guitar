@@ -14,7 +14,7 @@
       />
       <div
           class="app-radiobox_box"
-          :class="{custom: isCustomBackground}"
+          :class="{ custom: isCustomBackground }"
           :style="getCustomBG"
       >
         <span v-show="isSelected" class="app-radiobox_box-item" />
@@ -22,10 +22,10 @@
     </div>
 
     <label
-        v-if="item && item.label"
-        :for="getName"
-        class="app-radiobox_label"
-        v-html="item.label"
+      v-if="item && item.label"
+      :for="getName"
+      class="app-radiobox_label"
+      v-html="item.label"
     />
   </div>
 </template>
@@ -110,7 +110,7 @@ $border-color: #424242;
 
 .app-radiobox {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
 
   &-item {
@@ -149,7 +149,7 @@ $border-color: #424242;
 
       &-item {
         position: absolute;
-        content: '';
+        content: "";
         width: 12px;
         height: 12px;
         background-color: white;
@@ -179,7 +179,7 @@ $border-color: #424242;
 
     &label {
       font-size: 16px;
-      color: #FFFFFF;
+      color: #ffffff;
       cursor: pointer;
       margin-left: 5px;
     }
